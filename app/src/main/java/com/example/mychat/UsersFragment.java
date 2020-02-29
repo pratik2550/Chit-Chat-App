@@ -198,6 +198,7 @@ public class UsersFragment extends Fragment {
 //    handle menue click listner
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        get item id
         int id = item.getItemId();
         if(id == R.id.action_logout){
             firebaseAuth.signOut();
