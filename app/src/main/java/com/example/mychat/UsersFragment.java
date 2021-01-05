@@ -42,7 +42,7 @@ public class UsersFragment extends Fragment {
 //    views
     RecyclerView recyclerView;
     AdapterUser adapterUser;
-    List<ModelUsers> usersList;
+    List<ModelUsers> userList;
 
     FirebaseAuth firebaseAuth;
 
@@ -67,7 +67,7 @@ public class UsersFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
 
 //        init user list
-        usersList = new ArrayList<>();
+        userList = new ArrayList<>();
 
         getAllUsers();
 
@@ -80,15 +80,15 @@ public class UsersFragment extends Fragment {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                usersList.clear();
+                userList.clear();
                 for (DataSnapshot ds: dataSnapshot.getChildren()){
                     ModelUsers modelUsers = ds.getValue(ModelUsers.class);
 
                     if (!modelUsers.getUid().equals(fUser.getUid())){
-                        usersList.add(modelUsers);
+                        userList.add(modelUsers);
                     }
 
-                    adapterUser = new AdapterUser(getActivity(), usersList);
+                    adapterUser = new AdapterUser(getActivity(), userList);
                     recyclerView.setAdapter(adapterUser);
 
                 }
@@ -108,19 +108,19 @@ public class UsersFragment extends Fragment {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                usersList.clear();
+                userList.clear();
                 for (DataSnapshot ds: dataSnapshot.getChildren()){
                     ModelUsers modelUsers = ds.getValue(ModelUsers.class);
 
                     if (!modelUsers.getUid().equals(fUser.getUid())){
                         if (modelUsers.getName().toLowerCase().contains(query.toLowerCase()) ||
                                 modelUsers.getEmail().toLowerCase().contains(query.toLowerCase())){
-                            usersList.add(modelUsers);
+                            userList.add(modelUsers);
                         }
                     }
 
 //                    adapter
-                    adapterUser = new AdapterUser(getActivity(), usersList);
+                    adapterUser = new AdapterUser(getActivity(), userList);
 //                    refresh adapter
                     adapterUser.notifyDataSetChanged();
 //                    set adapter to recycler view

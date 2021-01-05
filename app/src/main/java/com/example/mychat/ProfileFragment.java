@@ -112,7 +112,7 @@ public class ProfileFragment extends Fragment {
         storageReference = getInstance().getReference();
 
 //        init permissions
-        cameraPermissions = new  String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        cameraPermissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
 //        init views
@@ -132,27 +132,25 @@ public class ProfileFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 //                checks until required data get
-                for (DataSnapshot ds : dataSnapshot.getChildren()){
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
 //                    get data
-                    String name = ""+ ds.child("name").getValue();
-                    String email = ""+ ds.child("email").getValue();
-                    String phone = ""+ ds.child("phone").getValue();
-                    String image = ""+ ds.child("image").getValue();
-                    String cover = ""+ ds.child("cover").getValue();
+                    String name = "" + ds.child("name").getValue();
+                    String email = "" + ds.child("email").getValue();
+                    String phone = "" + ds.child("phone").getValue();
+                    String image = "" + ds.child("image").getValue();
+                    String cover = "" + ds.child("cover").getValue();
 
                     nameTv.setText(name);
                     emailTv.setText(email);
                     phoneTv.setText(phone);
                     try {
                         Picasso.get().load(image).into(profileImage);
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         Picasso.get().load(R.drawable.ic_default_cover).into(profileImage);
                     }
                     try {
                         Picasso.get().load(cover).into(coverImage);
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                     }
                 }
 
@@ -175,27 +173,26 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
-    private boolean checkStoragePermission(){
+    private boolean checkStoragePermission() {
 
         boolean result = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
         return result;
     }
-    private void requestStoragePermission(){
+
+    private void requestStoragePermission() {
         requestPermissions(storagePermission, STORAGE_REQUEST_CODE);
     }
 
+    private boolean checkCemeraPermission() {
 
-
-    private boolean checkCemeraPermission(){
-
-        boolean result = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) ==(PackageManager.PERMISSION_GRANTED);
-        boolean result1 = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) ==(PackageManager.PERMISSION_GRANTED);
+        boolean result = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
+        boolean result1 = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
         return result && result1;
     }
-    private void requestCemeraPermission(){
+
+    private void requestCemeraPermission() {
         requestPermissions(cameraPermissions, CAMERA_REQUEST_CODE);
     }
-
 
     private void showEditProfileDialog() {
 
@@ -211,17 +208,14 @@ public class ProfileFragment extends Fragment {
                     pd.setMessage("Update Profile Picture");
                     profileOrCoverPhoto = "image";
                     showImagePictureDialog();
-                }
-                else if (which == 1) {
+                } else if (which == 1) {
                     pd.setMessage("Update Cover Photo");
                     profileOrCoverPhoto = "cover";
                     showImagePictureDialog();
-                }
-                else if (which == 2) {
+                } else if (which == 2) {
                     pd.setMessage("Update Name");
                     showNamePhoneUpdateDialog("name");
-                }
-                else if (which == 3) {
+                } else if (which == 3) {
                     pd.setMessage("Update Phone Number");
                     showNamePhoneUpdateDialog("phone");
                 }
@@ -232,10 +226,10 @@ public class ProfileFragment extends Fragment {
 
     private void showNamePhoneUpdateDialog(final String key) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Update"+ key);
+        builder.setTitle("Update" + key);
         LinearLayout linearLayout = new LinearLayout(getActivity());
         linearLayout.setOrientation(LinearLayout.VERTICAL);
-        linearLayout.setPadding(10,10,10,10);
+        linearLayout.setPadding(10, 10, 10, 10);
 
         final EditText editText = new EditText(getActivity());
         editText.setHint("Enter " + key);
@@ -247,7 +241,7 @@ public class ProfileFragment extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
                 String value = editText.getText().toString().trim();
 
-                if (!TextUtils.isEmpty(value)){
+                if (!TextUtils.isEmpty(value)) {
                     pd.show();
                     HashMap<String, Object> result = new HashMap<>();
                     result.put(key, value);
@@ -265,9 +259,8 @@ public class ProfileFragment extends Fragment {
                             Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
-                }
-                else {
-                    Toast.makeText(getActivity(), "Please enter "+ key , Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), "Please enter " + key, Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -294,18 +287,15 @@ public class ProfileFragment extends Fragment {
 //                handle dialog item clicks
                 if (which == 0) {
 
-                    if (!checkCemeraPermission()){
+                    if (!checkCemeraPermission()) {
                         requestCemeraPermission();
-                    }
-                    else pickFromCamera();
+                    } else pickFromCamera();
 
-                }
-                else if (which == 1) {
+                } else if (which == 1) {
 
-                    if (!checkStoragePermission()){
+                    if (!checkStoragePermission()) {
                         requestStoragePermission();
-                    }
-                    else {
+                    } else {
                         pickFromGallery();
                     }
 
@@ -319,29 +309,27 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
-        switch (requestCode){
-            case CAMERA_REQUEST_CODE:{
-                if (grantResults.length >  0){
+        switch (requestCode) {
+            case CAMERA_REQUEST_CODE: {
+                if (grantResults.length > 0) {
                     boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     boolean writeStorageAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
                     if (cameraAccepted && writeStorageAccepted) {
                         pickFromCamera();
-                    }
-                    else {
+                    } else {
                         Toast.makeText(getActivity(), "Please enable camera and storage permission", Toast.LENGTH_SHORT).show();
                     }
                 }
 
             }
             break;
-            case STORAGE_REQUEST_CODE:{
+            case STORAGE_REQUEST_CODE: {
 
-                if (grantResults.length >  0){
-                    boolean writeStorageAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+                if (grantResults.length > 0) {
+                    boolean writeStorageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     if (writeStorageAccepted) {
                         pickFromGallery();
-                    }
-                    else {
+                    } else {
                         Toast.makeText(getActivity(), "Please enable storage permission", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -356,13 +344,13 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
-        if (resultCode == Activity.RESULT_OK){
-            if (requestCode == IMAGE_PICK_GALLERY_CODE){
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == IMAGE_PICK_GALLERY_CODE) {
                 image_uri = data.getData();
 
                 uploadProfileCoverPhoto(image_uri);
             }
-            if (requestCode == IMAGE_PICK_GALLERY_CODE){
+            if (requestCode == IMAGE_PICK_GALLERY_CODE) {
 
                 uploadProfileCoverPhoto(image_uri);
             }
@@ -373,17 +361,17 @@ public class ProfileFragment extends Fragment {
     private void uploadProfileCoverPhoto(final Uri uri) {
 
 
-        String filePathAndName = storagePath+ ""+ profileOrCoverPhoto + "_" + user.getUid();
+        String filePathAndName = storagePath + "" + profileOrCoverPhoto + "_" + user.getUid();
         StorageReference storageReference2nd = storageReference.child(filePathAndName);
         storageReference2nd.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
                 Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                while (!uriTask.isSuccessful());
+                while (!uriTask.isSuccessful()) ;
                 Uri downloadUri = uriTask.getResult();
 
-                if (uriTask.isSuccessful()){
+                if (uriTask.isSuccessful()) {
                     HashMap<String, Object> results = new HashMap<>();
                     results.put(profileOrCoverPhoto, downloadUri.toString());
 
@@ -435,13 +423,12 @@ public class ProfileFragment extends Fragment {
         startActivityForResult(gallleryIntent, IMAGE_PICK_GALLERY_CODE);
     }
 
-    private void checkUsertatus(){
+    private void checkUsertatus() {
 //        get current user
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        if (user != null){
+        if (user != null) {
 //            mProfileTxt.setText(user.getEmail());
-        }
-        else {
+        } else {
             startActivity(new Intent(getActivity(), MainActivity.class));
             getActivity().finish();
         }
@@ -464,7 +451,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.action_logout){
+        if (id == R.id.action_logout) {
             firebaseAuth.signOut();
             checkUsertatus();
         }
