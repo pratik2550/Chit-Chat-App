@@ -9,6 +9,11 @@
         android:title="Search"
         android:icon="@android:drawable/ic_menu_search"
         app:showAsAction="always"
-        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+        app:actionViewClass="android.widget.SearchView" />
+
+    <item android:id="@+id/action_add_post"
+        android:title="LAdd Post"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_add_white"/>
 
 </menu>

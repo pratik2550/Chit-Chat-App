@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 import android.view.ViewGroup;
 
 import com.example.mychat.adapters.AdapterUser;
@@ -137,7 +137,7 @@ public class UsersFragment extends Fragment {
 
     }
 
-    private void checkUsertatus(){
+    private void checkUserStatus(){
 //        get current user
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user != null){
@@ -160,10 +160,11 @@ public class UsersFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.main_menu, menu);
 
+        menu.findItem(R.id.action_add_post).setVisible(false);
 //        search view
         MenuItem item = menu.findItem(R.id.action_search);
 //        SearchView searchView = MenuItemCompat.getActionView(item);
-        androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) MenuItemCompat.getActionView(item);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
 
 //        search listener
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -202,7 +203,7 @@ public class UsersFragment extends Fragment {
         int id = item.getItemId();
         if(id == R.id.action_logout){
             firebaseAuth.signOut();
-            checkUsertatus();
+            checkUserStatus();
         }
         return super.onOptionsItemSelected(item);
     }
