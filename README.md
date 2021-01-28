@@ -9,17 +9,17 @@ An android application sharing posts and instant messaging.<br />
 
 ## Screenshots :camera:
 
-|                       Login Page                     |                        Product List                   |                       Shop List                       |
+|                       Login Page                     |                            Blogs                      |                       Add Posts                       |
 | :--------------------------------------------------: | :---------------------------------------------------: | :---------------------------------------------------: |
-|          <img src="screenshots/1.login.jpg">         |           <img src="Screenshots/4.plist.jpg">         |          <img src="Screenshots/5.addcart.jpg">        |
+|          <img src="screenshots/1.login.jpg">         |           <img src="screenshots/2.feeds.jpg">         |        <img src="screenshots/3.add%20post.jpg">       |
 
-|                         Cart                         |                        Order List                     |                      Shop Review                      |
+|               Edit and delete post                   |                   Search post by title                |                     User Profile                      |
 | :--------------------------------------------------: | :---------------------------------------------------: | :---------------------------------------------------: |
-|         <img src="Screenshots/6.cart.jpg">           |        <img src="Screenshots/8.odetails.jpg">         |         <img src="Screenshots/10.reviews.jpg">        |
+|      <img src="screenshots/4.edit%20feed.jpg">       |          <img src="screenshots/5.search.jpg">         |          <img src="screenshots/6.profile.jpg">        |
 
-|                   Product Details Seller             |                Seller Add/Update products             |                                                       |
+|                         Users list                   |                       Personal Chat                   |                      Delete Chats                     |
 | :--------------------------------------------------: | :---------------------------------------------------: | :---------------------------------------------------: |
-|        <img src="Screenshots/13.pdetails.jpg">       |         <img src="Screenshots/14.add.jpg">            |           <img src="Screenshots/blank.jpg">           |
+|          <img src="screenshots/7.users.jpg">         |         <img src="screenshots/8.chat.jpg">            |         <img src="screenshots/9.delete.jpg">          |
 
 <!--
 ## APK :iphone:
