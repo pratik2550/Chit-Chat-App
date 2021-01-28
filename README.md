@@ -23,21 +23,12 @@ An android application sharing posts and instant messaging.<br />
 
 <!--
 ## APK :iphone:
-[Apk link](https://drive.google.com/file/d/1Z2uGWXdqhYIySatzZamZ1dXoEPbhzhcM/view?usp=sharing)
+[Apk link](https://drive.google.com/file/d/1Z2uGWXdqhYIySatzZamZ1dXoEPbhzhcM/view?usp=sharing) -->
 
 ## Features:
-**Buyer-** <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.Able to view all the products available in store<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Manage list and add product to cart<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.Know the status of orders<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.Manage Orders<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.Rate and review shops<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.Search and sort procuct<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.Watch open/close status of shop<br />
-**Seller-** <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.Add, remove and modify procucts<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Easily change price of any product<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.Set discount and offer tag to any procuct<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.Search and sort procuct<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.Manage Orders<br />
--->
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.Share daily blogs and posts.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Likes and comments on posts.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.Share posts with other users.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.Personal chat with other users.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.Delete messages.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.Block unwanted users.<br />
