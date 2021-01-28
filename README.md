@@ -25,7 +25,7 @@ An android application sharing posts and instant messaging.<br />
 ## APK :iphone:
 [Apk link](https://drive.google.com/file/d/1Z2uGWXdqhYIySatzZamZ1dXoEPbhzhcM/view?usp=sharing) -->
 
-## Features:
+## Features :clipboard:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.Share daily blogs and posts.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Likes and comments on posts.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.Share posts with other users.<br />
