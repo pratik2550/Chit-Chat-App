@@ -27,6 +27,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -58,6 +59,7 @@ public class AddPostActivity extends AppCompatActivity {
     EditText titleEt, descriptionEt;
     ImageView postImage;
     Button uploadBtn;
+    ImageButton addImageBtn;
 
     String name, email, uid, dp;
 
@@ -91,6 +93,7 @@ public class AddPostActivity extends AppCompatActivity {
         descriptionEt = findViewById(R.id.postDescriptionEt);
         postImage = findViewById(R.id.postImageIv);
         uploadBtn = findViewById(R.id.postUploadButton);
+        addImageBtn = findViewById(R.id.addImageBtn);
 
         Intent intent = getIntent();
         String isUpdateKey = ""+intent.getStringExtra("key");
@@ -101,7 +104,7 @@ public class AddPostActivity extends AppCompatActivity {
             loadPostData(editPostId);
         } else {
             actionBar.setTitle("Add New Post");
-            uploadBtn.setText("Update");
+            uploadBtn.setText("Post");
         }
 
         actionBar.setSubtitle(email);
@@ -129,10 +132,11 @@ public class AddPostActivity extends AppCompatActivity {
         cameraPermissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
-        postImage.setOnClickListener(new View.OnClickListener() {
+        addImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showImagePickDialog();
+                postImage.setVisibility(View.VISIBLE);
             }
         });
 
@@ -353,6 +357,8 @@ public class AddPostActivity extends AppCompatActivity {
                         } catch (Exception e) {
 
                         }
+                    } else {
+                        postImage.setVisibility(View.GONE);
                     }
                 }
             }
@@ -396,6 +402,7 @@ public class AddPostActivity extends AppCompatActivity {
                                 hashMap.put("pTitle", title);
                                 hashMap.put("pDescription", description);
                                 hashMap.put("pImage", downloadUri);
+                                hashMap.put("pLikes", "0");
                                 hashMap.put("pTime", timeStamp);
 
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
@@ -437,6 +444,7 @@ public class AddPostActivity extends AppCompatActivity {
             hashMap.put("pTitle", title);
             hashMap.put("pDescription", description);
             hashMap.put("pImage", "noImage");
+            hashMap.put("pLikes", "0");
             hashMap.put("pTime", timeStamp);
 
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
@@ -616,6 +624,7 @@ public class AddPostActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         menu.findItem(R.id.action_add_post).setVisible(false);
         menu.findItem(R.id.action_search).setVisible(false);
+        menu.findItem(R.id.action_logout).setVisible(false);
         return super.onCreateOptionsMenu(menu);
     }
 

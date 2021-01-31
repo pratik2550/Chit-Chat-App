@@ -138,12 +138,11 @@ public class ChatActivity extends AppCompatActivity {
                     }
 
                     nameTv.setText(name);
-
                     try {
                         Picasso.get().load(hisImage).placeholder(R.drawable.ic_default).into(profileIv);
                     }
                     catch (Exception e){
-                        Picasso.get().load(R.drawable.ic_default).into(profileIv);
+                        Picasso.get().load(R.drawable.ic_default).placeholder(R.drawable.ic_default).into(profileIv);
                     }
                 }
             }
@@ -276,6 +275,41 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
+
+        DatabaseReference chatRef1 = FirebaseDatabase.getInstance().getReference("ChatList")
+                .child(myUid)
+                .child(hisUid);
+        chatRef1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (!snapshot.exists()) {
+                    chatRef1.child("id").setValue(hisUid);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        DatabaseReference chatRef2 = FirebaseDatabase.getInstance().getReference("ChatList")
+        .child(hisUid)
+        .child(myUid);
+
+        chatRef2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (!snapshot.exists()) {
+                    chatRef2.child("id").setValue(myUid);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void sentNotification(final String hisUid, final String name, final String message) {
@@ -293,7 +327,7 @@ public class ChatActivity extends AppCompatActivity {
                             .enqueue(new Callback<Response>() {
                                 @Override
                                 public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                                    Toast.makeText(ChatActivity.this, ""+response.message(), Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(ChatActivity.this, ""+response.message(), Toast.LENGTH_SHORT).show();
                                 }
 
                                 @Override

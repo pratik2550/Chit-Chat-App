@@ -10,7 +10,9 @@
             android:pivotY="0%"
             android:toDegrees="0">
             <shape android:shape="rectangle">
-                <corners android:radius="4dp" />
+                <corners android:topRightRadius="20dp"
+                    android:bottomRightRadius="20dp"
+                    android:bottomLeftRadius="20dp"/>
                 <padding
                     android:bottom="1px"
                     android:left="1px"
@@ -26,7 +28,7 @@
                 android:left="1px"
                 android:right="1px" />
             <solid android:color="#01000000" />
-            <corners android:radius="8dp" />
+            <corners android:radius="15dp" />
         </shape>
     </item>
 
@@ -38,7 +40,7 @@
             android:pivotY="0%"
             android:toDegrees="0">
             <shape android:shape="rectangle">
-                <corners android:radius="4dp" />
+                <corners android:radius="15dp" />
                 <padding android:bottom="1px" />
                 <solid android:color="#09000000" />
             </shape>
@@ -48,7 +50,7 @@
         <shape android:shape="rectangle">
             <padding android:bottom="1px" />
             <solid android:color="#09000000" />
-            <corners android:radius="8dp" />
+            <corners android:radius="15dp" />
         </shape>
     </item>
 
@@ -61,7 +63,7 @@
             android:pivotY="0%"
             android:toDegrees="0">
             <shape android:shape="rectangle">
-                <corners android:radius="4dp" />
+                <corners android:radius="15dp" />
                 <padding
                     android:bottom="1px"
                     android:left="1px"
@@ -77,7 +79,7 @@
                 android:left="1px"
                 android:right="1px" />
             <solid android:color="#10000000" />
-            <corners android:radius="8dp" />
+            <corners android:radius="15dp" />
         </shape>
     </item>
 
@@ -98,7 +100,7 @@
     <item android:left="8dp">
         <shape android:shape="rectangle">
             <solid android:color="@color/colorWhite" />
-            <corners android:radius="8dp" />
+            <corners android:radius="15dp" />
         </shape>
     </item>
 </layer-list>

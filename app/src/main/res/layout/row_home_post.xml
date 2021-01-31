@@ -39,6 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name"
+                    android:layout_marginLeft="5dp"
                     android:textColor="@color/colorBlack"
                     android:textSize="20sp" />
 
@@ -46,6 +47,7 @@
                     android:id="@+id/postTimeTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="33 min" />
 
             </LinearLayout>
@@ -65,8 +67,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Title"
-            android:textSize="16sp"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp"
             android:textStyle="bold"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:autoLink="all"/>
 
         <ImageView
@@ -81,14 +86,40 @@
             android:layout_height="wrap_content"
             android:text="The Description of the post"
             android:textColor="@color/colorBlack"
+            android:maxLines="6"
             android:autoLink="all" />
 
-        <TextView
-            android:id="@+id/postLikesTv"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="#F5F0F0" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="1.2k Likes"
-            android:textColor="@color/colorPrimary" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/postLikesTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1.2k Likes"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/pCommentTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="textEnd"
+                android:text="1.2k Comments"
+                android:textColor="@color/colorPrimary"/>
+
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
@@ -111,6 +142,8 @@
                 android:background="@null"
                 android:drawableStart="@drawable/ic_like_black"
                 android:drawableLeft="@drawable/ic_like_black"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:drawablePadding="5dp"
                 android:text="Like" />
 
@@ -129,6 +162,8 @@
                 android:background="@null"
                 android:drawableStart="@drawable/ic_comment_black"
                 android:drawableLeft="@drawable/ic_comment_black"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:drawablePadding="5dp"
                 android:text="Comment" />
 
@@ -147,6 +182,8 @@
                 android:background="@null"
                 android:drawableStart="@drawable/ic_share_black"
                 android:drawableLeft="@drawable/ic_share_black"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:drawablePadding="5dp"
                 android:text="Share" />
 

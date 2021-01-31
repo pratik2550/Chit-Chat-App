@@ -238,7 +238,7 @@ public class ProfileFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getActivity(), "" + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "" + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -346,6 +346,37 @@ public class ProfileFragment extends Fragment {
 
                             }
                         });
+                        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for (DataSnapshot ds: snapshot.getChildren()) {
+                                    String child = ds.getKey();
+                                    if (snapshot.child(child).hasChild("Comments")) {
+                                        String child1 = ""+snapshot.child(child).getKey();
+                                        Query child2 = FirebaseDatabase.getInstance().getReference("Posts").child(child1).child("Comments").orderByChild("uid").equalTo(uid);
+                                        child2.addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                for (DataSnapshot ds: snapshot.getChildren()) {
+                                                    String child = ds.getKey();
+                                                    snapshot.getRef().child(child).child("uName").setValue(value);
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                     }
                 } else {
                     Toast.makeText(getActivity(), "Please enter " + key, Toast.LENGTH_SHORT).show();
@@ -353,7 +384,7 @@ public class ProfileFragment extends Fragment {
 
             }
         });
-        builder.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -494,6 +525,39 @@ public class ProfileFragment extends Fragment {
 
                             }
                         });
+
+                        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for (DataSnapshot ds: snapshot.getChildren()) {
+                                    String child = ds.getKey();
+                                    if (snapshot.child(child).hasChild("Comments")) {
+                                        String child1 = ""+snapshot.child(child).getKey();
+                                        Query child2 = FirebaseDatabase.getInstance().getReference("Posts").child(child1).child("Comments").orderByChild("uid").equalTo(uid);
+                                        child2.addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                for (DataSnapshot ds: snapshot.getChildren()) {
+                                                    String child = ds.getKey();
+                                                    snapshot.getRef().child(child).child("uDp").setValue(downloadUri.toString());
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
                     }
                 }
 

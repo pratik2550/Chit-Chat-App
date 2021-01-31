@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,8 +31,8 @@ import java.util.HashMap;
 public class RegisterActivity extends AppCompatActivity {
 
     //    views
-    EditText mEmailRg, mPasswordRg;
-    Button mRegisterBtn,showPassword;
+    TextInputEditText mEmailRg, mPasswordRg;
+    Button mRegisterBtn;
     TextView mHaveaccount;
 
     //    progressbar to display while registering user
@@ -59,7 +60,6 @@ public class RegisterActivity extends AppCompatActivity {
         mEmailRg = findViewById(R.id.email_txt);
         mPasswordRg = findViewById(R.id.password_txt);
         mRegisterBtn = findViewById(R.id.register_btn);
-        showPassword = findViewById(R.id.show_password);
         mHaveaccount =findViewById(R.id.have_account);
 
 //        progressBar
@@ -80,21 +80,6 @@ public class RegisterActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
-        showPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (showPassword.getText().toString().equals("Show")){
-                    mPasswordRg.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-//                    mPasswordRg.setTransformationMethod(null);
-                    showPassword.setText("Hide");
-                }
-                else{
-                    mPasswordRg.setTransformationMethod(PasswordTransformationMethod.getInstance());
-//                    mPasswordRg.setTransformationMethod(new PasswordTransformationMethod());
-                    showPassword.setText("Show");
-                }
-            }
-        });
 
 //        handle register btn click
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {

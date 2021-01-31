@@ -29,6 +29,7 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,8 +46,8 @@ public class LoginActivity extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
 
     //    view
-    EditText mEmailLg, mPasswordLg;
-    Button mLoginBtn, showPassword;
+    TextInputEditText mEmailLg, mPasswordLg;
+    Button mLoginBtn;
     SignInButton mGoogleSignin;
     TextView mNotHaveaccount, mForgotPassword;
 
@@ -82,7 +83,6 @@ public class LoginActivity extends AppCompatActivity {
         mEmailLg = findViewById(R.id.email_txt);
         mPasswordLg = findViewById(R.id.password_txt);
         mLoginBtn = findViewById(R.id.login_btn);
-        showPassword = findViewById(R.id.show_password);
         mNotHaveaccount =findViewById(R.id.nothave_account);
         mForgotPassword =findViewById(R.id.forgot_password);
         mGoogleSignin = findViewById(R.id.google_signin);
@@ -125,22 +125,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-//      show password listner
-        showPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (showPassword.getText().toString().equals("Show")){
-                    mPasswordLg.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-//                    mPasswordRg.setTransformationMethod(null);
-                    showPassword.setText("Hide");
-                }
-                else{
-                    mPasswordLg.setTransformationMethod(PasswordTransformationMethod.getInstance());
-//                    mPasswordRg.setTransformationMethod(new PasswordTransformationMethod());
-                    showPassword.setText("Show");
-                }
-            }
-        });
 
 //        Google signin butten handler
         mGoogleSignin.setOnClickListener(new View.OnClickListener() {

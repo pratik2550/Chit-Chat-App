@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
@@ -45,7 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     List<ModelPost> postList;
     AdapterPost adapterPost;
-    String uid;
+    String uid, pUid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +67,9 @@ public class ProfileActivity extends AppCompatActivity {
         recyclerViewPost = findViewById(R.id.recyclerViewPost);
 
         Intent intent = getIntent();
-        uid = intent.getStringExtra("uid");
-
-        Query query = FirebaseDatabase.getInstance().getReference("Users").orderByChild("uid").equalTo(uid);
+        pUid = intent.getStringExtra("uid");
+        Log.i("Uid 1", pUid);
+        Query query = FirebaseDatabase.getInstance().getReference("Users").orderByChild("uid").equalTo(pUid);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -116,7 +117,7 @@ public class ProfileActivity extends AppCompatActivity {
         layoutManager.setReverseLayout(true);
         recyclerViewPost.setLayoutManager(layoutManager);
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
-        Query query = ref.orderByChild("uid").equalTo(uid);
+        Query query = ref.orderByChild("uid").equalTo(pUid);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -144,7 +145,8 @@ public class ProfileActivity extends AppCompatActivity {
         layoutManager.setReverseLayout(true);
         recyclerViewPost.setLayoutManager(layoutManager);
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
-        Query query = ref.orderByChild("uid").equalTo(uid);
+        Log.i("Uid", pUid);
+        Query query = ref.orderByChild("uid").equalTo(pUid);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

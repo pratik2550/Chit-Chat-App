@@ -10,23 +10,23 @@
             android:pivotY="0%"
             android:toDegrees="0">
             <shape android:shape="rectangle">
-                <corners android:radius="4dp" />
+                <corners android:radius="15dp" />
                 <padding
                     android:bottom="1px"
                     android:left="1px"
                     android:right="1px" />
-                <solid android:color="#01000000" />
+                <solid android:color="@color/colorPrimaryDark" />
             </shape>
         </rotate>
     </item>
     <item android:right="10dp">
         <shape android:shape="rectangle">
-            <corners android:radius="4dp" />
+            <corners android:radius="15dp" />
             <padding
                 android:bottom="1px"
                 android:left="1px"
                 android:right="1px" />
-            <solid android:color="#01000000" />
+            <solid android:color="@color/colorPrimaryDark" />
         </shape>
     </item>
 
@@ -39,17 +39,17 @@
             android:pivotY="0%"
             android:toDegrees="0">
             <shape android:shape="rectangle">
-                <corners android:radius="4dp" />
+                <corners android:radius="15dp" />
                 <padding android:bottom="1px" />
-                <solid android:color="#09000000" />
+                <solid android:color="@color/colorPrimaryDark" />
             </shape>
         </rotate>
     </item>
     <item android:right="10dp">
         <shape android:shape="rectangle">
-            <corners android:radius="4dp" />
+            <corners android:radius="15dp" />
             <padding android:bottom="1px" />
-            <solid android:color="#09000000" />
+            <solid android:color="@color/colorPrimaryDark" />
         </shape>
     </item>
 
@@ -62,23 +62,23 @@
             android:pivotY="0%"
             android:toDegrees="0">
             <shape android:shape="rectangle">
-                <corners android:radius="4dp" />
+                <corners android:radius="15dp" />
                 <padding
                     android:bottom="1px"
                     android:left="1px"
                     android:right="1px" />
-                <solid android:color="#10000000" />
+                <solid android:color="@color/colorPrimaryDark" />
             </shape>
         </rotate>
     </item>
     <item android:right="10dp">
         <shape android:shape="rectangle">
-            <corners android:radius="4dp" />
+            <corners android:radius="15dp" />
             <padding
                 android:bottom="1px"
                 android:left="1px"
                 android:right="1px" />
-            <solid android:color="#10000000" />
+            <solid android:color="@color/colorPrimaryDark" />
         </shape>
     </item>
 
@@ -94,14 +94,14 @@
             android:pivotY="0%"
             android:toDegrees="0">
             <shape android:shape="rectangle">
-                <solid android:color="#CBEBFC" />
+                <solid android:color="@color/colorPrimaryDark" />
             </shape>
         </rotate>
     </item>
     <item android:right="10dp">
         <shape android:shape="rectangle">
-            <solid android:color="#CBEBFC" />
-            <corners android:radius="4dp" />
+            <solid android:color="@color/colorPrimaryDark" />
+            <corners android:radius="15dp" />
         </shape>
     </item>
 </layer-list>
