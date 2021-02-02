@@ -3,6 +3,8 @@ package com.example.mychat;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -23,6 +25,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mychat.adapters.AdapterComments;
+import com.example.mychat.models.ModelComment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,8 +41,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 public class PostDetailActivity extends AppCompatActivity {
@@ -52,6 +58,10 @@ public class PostDetailActivity extends AppCompatActivity {
     ImageButton moreBtn;
     Button likeBtn, shareBtn;
     LinearLayout profileLayout;
+    RecyclerView commentRv;
+
+    List<ModelComment> commentList;
+    AdapterComments adapterComments;
 
     boolean mProcessComment = false;
     boolean mProcessLikes = false;
@@ -69,7 +79,6 @@ public class PostDetailActivity extends AppCompatActivity {
         actionBar.setTitle("Post Detail");
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setSubtitle("SignedIn as: " + myEmail);
 
         postId = getIntent().getStringExtra("postId");
 
@@ -85,6 +94,7 @@ public class PostDetailActivity extends AppCompatActivity {
         likeBtn = findViewById(R.id.likeBtn);
         shareBtn = findViewById(R.id.shareBtn);
         profileLayout = findViewById(R.id.profileLayout);
+        commentRv = findViewById(R.id.commentRv);
 
         commentEt = findViewById(R.id.commentEt);
         sendBtn = findViewById(R.id.sendBtn);
@@ -94,6 +104,8 @@ public class PostDetailActivity extends AppCompatActivity {
         checkUserStatus();
         loadUserInfo();
         setLikes();
+        actionBar.setSubtitle("SignedIn as: " + myEmail);
+        loadComments();
 
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +128,34 @@ public class PostDetailActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void loadComments() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        commentRv.setLayoutManager(layoutManager);
+
+        commentList = new ArrayList<>();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts").child(postId).child("comment");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                commentList.clear();
+                for (DataSnapshot ds: snapshot.getChildren()) {
+                    ModelComment modelComment = ds.getValue(ModelComment.class);
+                    commentList.add(modelComment);
+
+
+
+                    adapterComments = new AdapterComments(getApplicationContext(), commentList, myUid, postId);
+                    commentRv.setAdapter(adapterComments);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void showMoreOption() {
@@ -278,6 +318,7 @@ public class PostDetailActivity extends AppCompatActivity {
         hashMap.put("uEmail", myEmail);
         hashMap.put("uDp", myDp);
         hashMap.put("uName", myName);
+        hashMap.put("uid", myUid);
 
         ref.child(timeStamp).setValue(hashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
