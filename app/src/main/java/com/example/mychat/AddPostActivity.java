@@ -403,6 +403,7 @@ public class AddPostActivity extends AppCompatActivity {
                                 hashMap.put("pDescription", description);
                                 hashMap.put("pImage", downloadUri);
                                 hashMap.put("pLikes", "0");
+                                hashMap.put("pComments", "0");
                                 hashMap.put("pTime", timeStamp);
 
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
@@ -445,6 +446,7 @@ public class AddPostActivity extends AppCompatActivity {
             hashMap.put("pDescription", description);
             hashMap.put("pImage", "noImage");
             hashMap.put("pLikes", "0");
+            hashMap.put("pComments", "0");
             hashMap.put("pTime", timeStamp);
 
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
