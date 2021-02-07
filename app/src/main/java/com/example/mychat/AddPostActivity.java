@@ -96,6 +96,17 @@ public class AddPostActivity extends AppCompatActivity {
         addImageBtn = findViewById(R.id.addImageBtn);
 
         Intent intent = getIntent();
+
+        String action = intent.getAction();
+        String type = intent.getType();
+        if (Intent.ACTION_SEND.equals(action) && type!=null) {
+            if ("text/plain".equals(type)) {
+                handelSendText(intent);
+            } else if (type.startsWith("image/*")) {
+                handelSendImage(intent);
+            }
+        }
+
         String isUpdateKey = ""+intent.getStringExtra("key");
         String editPostId = ""+intent.getStringExtra("editPostId");
         if (isUpdateKey.equals("editPost")) {
@@ -161,6 +172,22 @@ public class AddPostActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void handelSendImage(Intent intent) {
+        Uri imageURI = intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        if (imageURI != null) {
+            image_uri = imageURI;
+            postImage.setVisibility(View.VISIBLE);
+            postImage.setImageURI(image_uri);
+        }
+    }
+
+    private void handelSendText(Intent intent) {
+        String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+        if (sharedText!=null) {
+            descriptionEt.setText(sharedText);
+        }
     }
 
     private void beingUpdate(String title, String description, String editPostId) {
