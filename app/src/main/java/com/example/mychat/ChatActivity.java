@@ -32,6 +32,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -84,6 +85,7 @@ public class ChatActivity extends AppCompatActivity {
     TextView nameTv, userStatusTv;
     EditText messageEt;
     ImageButton sendBtn, attachBtn;
+    LinearLayout chatLayout;
 
 //    uid
     String hisUid;
@@ -133,6 +135,7 @@ public class ChatActivity extends AppCompatActivity {
         messageEt = findViewById(R.id.messageEt);
         sendBtn = findViewById(R.id.sendBtn);
         attachBtn = findViewById(R.id.attachBtn);
+        chatLayout = findViewById(R.id.chatLayout);
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
@@ -271,6 +274,13 @@ public class ChatActivity extends AppCompatActivity {
                             if (ds.exists()) {
                                 blockIv.setImageResource(R.drawable.ic_block_red);
                                 isBlocked = true;
+                                attachBtn.setEnabled(false);
+                                sendBtn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Toast.makeText(ChatActivity.this, "You are Blocked by user, can't send message...", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
                             }
                         }
                     }
