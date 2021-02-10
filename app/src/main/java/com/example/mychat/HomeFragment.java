@@ -168,9 +168,10 @@ public class HomeFragment extends Fragment {
         if(id == R.id.action_logout){
             firebaseAuth.signOut();
             checkUsertatus();
-        }
-        if(id == R.id.action_add_post){
+        }else if(id == R.id.action_add_post){
             startActivity(new Intent(getActivity(), AddPostActivity.class));
+        } else if (id == R.id.action_setting) {
+            startActivity(new Intent(getActivity(), SettingActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
