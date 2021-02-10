@@ -33,10 +33,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class UsersFragment extends Fragment {
 
 //    views
@@ -49,7 +45,6 @@ public class UsersFragment extends Fragment {
     public UsersFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -204,6 +199,8 @@ public class UsersFragment extends Fragment {
         if(id == R.id.action_logout){
             firebaseAuth.signOut();
             checkUserStatus();
+        } else if (id == R.id.action_setting) {
+            startActivity(new Intent(getActivity(), SettingActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

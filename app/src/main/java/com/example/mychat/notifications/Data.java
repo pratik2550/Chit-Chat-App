@@ -2,17 +2,18 @@ package com.example.mychat.notifications;
 
 public class Data {
 
-    private String users, body, title, sent;
+    private String users, body, title, sent, notificationType;
     private Integer icon;
 
     public Data () {
     }
 
-    public Data(String users, String body, String title, String sent, Integer icon) {
+    public Data(String users, String body, String title, String sent, String notificationType, Integer icon) {
         this.users = users;
         this.body = body;
         this.title = title;
         this.sent = sent;
+        this.notificationType = notificationType;
         this.icon = icon;
     }
 
@@ -54,5 +55,13 @@ public class Data {
 
     public void setIcon(Integer icon) {
         this.icon = icon;
+    }
+
+    public String getNotificationType() {
+        return notificationType;
+    }
+
+    public void setNotificationType(String notificationType) {
+        this.notificationType = notificationType;
     }
 }

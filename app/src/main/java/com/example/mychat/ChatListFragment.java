@@ -191,6 +191,8 @@ public class ChatListFragment extends Fragment {
         if(id == R.id.action_logout){
             firebaseAuth.signOut();
             checkUsertatus();
+        } else if (id == R.id.action_setting) {
+            startActivity(new Intent(getActivity(), SettingActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
