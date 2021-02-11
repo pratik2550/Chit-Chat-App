@@ -112,7 +112,6 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
                 context.startActivity(intent);
             }
         });
-        holder.itemView.left
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
