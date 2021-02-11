@@ -172,6 +172,8 @@ public class HomeFragment extends Fragment {
             startActivity(new Intent(getActivity(), AddPostActivity.class));
         } else if (id == R.id.action_setting) {
             startActivity(new Intent(getActivity(), SettingActivity.class));
+        } else if (id == R.id.action_notification) {
+            startActivity(new Intent(getActivity(), NotificationActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

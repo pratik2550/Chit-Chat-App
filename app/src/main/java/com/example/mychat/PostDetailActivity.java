@@ -287,6 +287,8 @@ public class PostDetailActivity extends AppCompatActivity {
                         postRef.child(postId).child("pLikes").setValue(""+(Integer.parseInt(pLikes)+1));
                         likeRef.child(postId).child(myUid).setValue("Liked");
                         mProcessLikes = false;
+
+                        addToHisNotification(""+hisUid, ""+postId, "Liked your post");
                     }
                 }
             }
@@ -296,6 +298,32 @@ public class PostDetailActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void addToHisNotification(String hisUid, String pId, String message) {
+        String timestamp = ""+System.currentTimeMillis();
+
+        HashMap<Object, String> hashMap = new HashMap<>();
+        hashMap.put("pId", pId);
+        hashMap.put("timestamp", timestamp);
+        hashMap.put("pUid", hisUid);
+        hashMap.put("notification", message);
+        hashMap.put("sUid", myUid);
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        ref.child(hisUid).child("Notifications").child(timestamp).setValue(hashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
     }
 
     private void postComment() {
@@ -328,6 +356,8 @@ public class PostDetailActivity extends AppCompatActivity {
                         Toast.makeText(PostDetailActivity.this, "Comment Added...", Toast.LENGTH_SHORT).show();
                         commentEt.setText("");
                         updateCommentCount();
+
+                        addToHisNotification(""+hisUid, ""+postId, "Commented on your post");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
