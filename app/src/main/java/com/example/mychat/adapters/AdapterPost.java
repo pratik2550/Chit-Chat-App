@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mychat.AddPostActivity;
 import com.example.mychat.PostDetailActivity;
+import com.example.mychat.PostLikedByActivity;
 import com.example.mychat.ProfileActivity;
 import com.example.mychat.R;
 import com.example.mychat.models.ModelPost;
@@ -184,6 +185,40 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyHolder> {
                 context.startActivity(intent);
             }
         });
+        holder.postLikesTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, PostLikedByActivity.class);
+                intent.putExtra("postId", pId);
+                context.startActivity(intent);
+            }
+        });
+    }
+
+    private void addToHisNotification(String hisUid, String pId, String message) {
+        String timestamp = ""+System.currentTimeMillis();
+
+        HashMap<Object, String> hashMap = new HashMap<>();
+        hashMap.put("pId", pId);
+        hashMap.put("timestamp", timestamp);
+        hashMap.put("pUid", hisUid);
+        hashMap.put("notification", message);
+        hashMap.put("sUid", myUid);
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        ref.child(hisUid).child("Notifications").child(timestamp).setValue(hashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
     }
 
     private void addToHisNotification(String hisUid, String pId, String message) {
