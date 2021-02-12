@@ -156,6 +156,7 @@ public class UsersFragment extends Fragment {
         inflater.inflate(R.menu.main_menu, menu);
 
         menu.findItem(R.id.action_add_post).setVisible(false);
+        menu.findItem(R.id.action_notification).setVisible(false);
 //        search view
         MenuItem item = menu.findItem(R.id.action_search);
 //        SearchView searchView = MenuItemCompat.getActionView(item);

@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mychat.AddPostActivity;
 import com.example.mychat.PostDetailActivity;
+import com.example.mychat.PostLikedByActivity;
 import com.example.mychat.ProfileActivity;
 import com.example.mychat.R;
 import com.example.mychat.models.ModelPost;
@@ -181,6 +182,14 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyHolder> {
             public void onClick(View v) {
                 Intent intent = new Intent(context, ProfileActivity.class);
                 intent.putExtra("uid", uid);
+                context.startActivity(intent);
+            }
+        });
+        holder.postLikesTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, PostLikedByActivity.class);
+                intent.putExtra("postId", pId);
                 context.startActivity(intent);
             }
         });

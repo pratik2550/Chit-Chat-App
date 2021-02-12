@@ -104,7 +104,7 @@ public class PostDetailActivity extends AppCompatActivity {
         checkUserStatus();
         loadUserInfo();
         setLikes();
-        actionBar.setSubtitle("SignedIn as: " + myEmail);
+        actionBar.setSubtitle(myEmail);
         loadComments();
 
         sendBtn.setOnClickListener(new View.OnClickListener() {
@@ -127,7 +127,14 @@ public class PostDetailActivity extends AppCompatActivity {
                 showMoreOption();
             }
         });
-
+        pLikeTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PostDetailActivity.this, PostLikedByActivity.class);
+                intent.putExtra("postId", postId);
+                startActivity(intent);
+            }
+        });
     }
 
     private void loadComments() {
@@ -491,6 +498,7 @@ public class PostDetailActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         menu.findItem(R.id.action_add_post).setVisible(false);
         menu.findItem(R.id.action_search).setVisible(false);
+        menu.findItem(R.id.action_notification).setVisible(false);
         return super.onCreateOptionsMenu(menu);
     }
 
