@@ -43,7 +43,7 @@ public class NotificationActivity extends AppCompatActivity {
         notificationList  = new ArrayList<>();
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
-        ref.child(mAuth.getUid()).child("Notification")
+        ref.child(mAuth.getUid()).child("Notifications")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

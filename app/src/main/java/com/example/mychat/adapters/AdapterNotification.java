@@ -122,7 +122,7 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
-                        ref.child(mAuth.getUid()).child("Notification").child(timeStamp).removeValue()
+                        ref.child(mAuth.getUid()).child("Notifications").child(timeStamp).removeValue()
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
