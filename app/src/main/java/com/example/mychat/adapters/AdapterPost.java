@@ -221,32 +221,6 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyHolder> {
                 });
     }
 
-    private void addToHisNotification(String hisUid, String pId, String message) {
-        String timestamp = ""+System.currentTimeMillis();
-
-        HashMap<Object, String> hashMap = new HashMap<>();
-        hashMap.put("pId", pId);
-        hashMap.put("timestamp", timestamp);
-        hashMap.put("pUid", hisUid);
-        hashMap.put("notification", message);
-        hashMap.put("sUid", myUid);
-
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
-        ref.child(hisUid).child("Notifications").child(timestamp).setValue(hashMap)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-                    }
-                });
-    }
-
     private void shareImageAndText(String pTitle, String pDescription, Bitmap bitmap) {
 
         String shareBody = pTitle + "\n" + pDescription;
