@@ -635,6 +635,8 @@ public class ProfileFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+
+
     //    handle menue click listner
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -646,6 +648,8 @@ public class ProfileFragment extends Fragment {
             startActivity(new Intent(getActivity(), AddPostActivity.class));
         } else if (id == R.id.action_setting) {
             startActivity(new Intent(getActivity(), SettingActivity.class));
+        } else if (id == R.id.action_notification) {
+            startActivity(new Intent(getActivity(), NotificationActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
