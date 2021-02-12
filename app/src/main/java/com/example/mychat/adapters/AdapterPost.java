@@ -47,6 +47,7 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -142,6 +143,8 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyHolder> {
                                 postRef.child(postId).child("pLikes").setValue(""+(pLikes+1));
                                 likeRef.child(postId).child(myUid).setValue("Liked");
                                 mProcessLike = false;
+
+                                addToHisNotification(""+uid, ""+pId, "Like your post");
                             }
                         }
                     }
@@ -181,6 +184,32 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyHolder> {
                 context.startActivity(intent);
             }
         });
+    }
+
+    private void addToHisNotification(String hisUid, String pId, String message) {
+        String timestamp = ""+System.currentTimeMillis();
+
+        HashMap<Object, String> hashMap = new HashMap<>();
+        hashMap.put("pId", pId);
+        hashMap.put("timestamp", timestamp);
+        hashMap.put("pUid", hisUid);
+        hashMap.put("notification", message);
+        hashMap.put("sUid", myUid);
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        ref.child(hisUid).child("Notifications").child(timestamp).setValue(hashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
     }
 
     private void shareImageAndText(String pTitle, String pDescription, Bitmap bitmap) {
